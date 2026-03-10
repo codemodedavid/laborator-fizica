@@ -116,11 +116,11 @@ int main(void) {
                 
                 double err_alpha = sqrt(sum / (n * (n-1)));
                 
-                printf("Eroarea alpha: %d grade, %d minute\n", (int) err_alpha, (int) ((err_alpha - (int) err_alpha) * 60));
+                printf("Eroarea alpha: %d grade, %f minute\n", (int) err_alpha, ((err_alpha - (int) err_alpha) * 60));
 
                 alpha_avg = alpha_avg * M_PI / 180;
 
-                double lambda_avg = a * sin(alpha_avg);
+                double lambda_avg = a * sin(alpha_avg)/2;
                 
                 printf("Medie lambda: %f (nm)\n", pow(10, 9) * lambda_avg);
 
