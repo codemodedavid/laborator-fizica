@@ -8,12 +8,23 @@ struct Data {
     ln_r: f64,
 }
 impl Data {
-    fn processing(temp: f64, res: f64) -> Self {
+    fn new(temp: f64, res: f64) -> Self {
         let temp_k = temp + 273.15;
         let temp_1k = 1.0/temp_k;
         let ln_r = res.ln();
         Self {temp, res, temp_k, temp_1k, ln_r}
     }
+}
+
+fn read_number() -> f64 {
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read line");
+
+    input.trim()
+        .parse() // parse the string into a number
+        .expect("Please type a valid number")
 }
 
 fn main() {
@@ -23,31 +34,14 @@ fn main() {
         let mut input = String::new();
         println!("temperatura {}:", i+1);
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read line");
-
-        let temp: f64 = input
-            .trim()
-            .parse() // parse the string into a number
-            .expect("Please type a valid number");
-
-        input.clear();
+        let temp = read_number();
         ///////////////////////////////////
         println!("rezistenta {}:", i+1);
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read line");
-
-        let res: f64 = input
-            .trim()
-            .parse() // parse the string into a number
-            .expect("Please type a valid number");
-        input.clear();
+        let res = read_number();
         //////////////////////////////////
         
-        let data = Data::processing(temp, res);
+        let data = Data::new(temp, res);
         println!("\nkelvin: {:.3}", data.temp_k);
         println!("1/kelvin: {:.3}x10^-3", data.temp_1k * 1000.0);
         println!("ln(R): {:.3}", data.ln_r);

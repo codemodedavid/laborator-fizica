@@ -60,7 +60,7 @@ fn main() {
         let sum_sq_diff: f64 = data_t.iter().map(|&x| (x - mean).powi(2)).sum();
         let sigma = (sum_sq_diff / (n * (n - 1)) as f64).sqrt();
         println!("//////////////////");
-        println!("U{} = {:.3} ± {:.3}", filtru, mean, sigma);
+        println!("U{} = {:.3} ± {:.7}", filtru, mean, sigma);
         println!("//////////////////");
         data_t.clear();
 
